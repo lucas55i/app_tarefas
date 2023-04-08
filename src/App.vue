@@ -1,35 +1,33 @@
 <script lang="ts">
 import { RouterView } from 'vue-router'
-import Drawer from './components/drawerTask.vue'
 import { taskStore } from './store/tasks/index'
+import AddTask from './components/AddTask.vue'
 
 export default {
   setup() {
-    const userStore = taskStore()
-
-    async function getUsers() {
-      await userStore.getAll()
+    const userStore = taskStore();
+    async function getAllTasks() {
+      await userStore.getAll();
     }
-
     return {
-      getUsers
-    }
+      getAllTasks
+    };
   },
-
   created() {
-    this.getUsers()
-  }
+    this.getAllTasks();
+  },
+  components: { AddTask }
 }
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <!-- <Drawer msg="Tarefas" /> -->
-    </div>
+    <AddTask></AddTask>
   </header>
 
   <RouterView />
+
+  <p>Tarefas Concluidas</p>
 </template>
 
 <style scoped>
