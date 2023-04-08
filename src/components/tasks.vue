@@ -1,6 +1,4 @@
 <script lang="ts">
-import { taskStore } from '../store/tasks/index'
-
 export default {}
 </script>
 <template>
