@@ -10,13 +10,13 @@ export default {
       await userStore.getAll();
     }
     return {
-      getAllTasks
+      getAllTasks,
     };
   },
   created() {
     this.getAllTasks();
   },
-  components: { AddTask }
+  components: { AddTask },
 }
 </script>
 
