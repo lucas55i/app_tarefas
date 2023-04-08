@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios'
 import { buildHttpClient } from '../common/http-client'
-import type { Task } from '../models/task'
+import type { CreateTask, Task } from '../models/task'
 
 class TaskService {
   private httpClient: AxiosInstance
@@ -11,6 +11,10 @@ class TaskService {
 
   async getAll(): Promise<Task[]> {
     return await this.httpClient.get('/v0/tarefas')
+  }
+
+  async createTask(creatTask: CreateTask) {
+    return await this.httpClient.post('/v0/tarefas', creatTask)
   }
 }
 

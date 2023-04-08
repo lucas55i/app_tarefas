@@ -3,3 +3,8 @@ export interface Task {
   action: string
   done: boolean
 }
+
+export interface CreateTask {
+  title: string
+  action: string
+}
