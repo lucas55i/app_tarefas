@@ -1,12 +1,12 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+<script  lang="ts">
+export default {
+
+}
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green">Adicionar tarefa</h1>
   </div>
 </template>
 
@@ -23,10 +23,11 @@ h3 {
 
 .greetings h1,
 .greetings h3 {
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 1024px) {
+
   .greetings h1,
   .greetings h3 {
     text-align: left;
