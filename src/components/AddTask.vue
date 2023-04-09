@@ -1,5 +1,5 @@
 <script  lang="ts">
-import type { Task } from '@/core/models/task';
+import type { CreateTask, Task } from '@/core/models/task';
 import { taskStore } from '@/store/tasks';
 import { required } from '@vuelidate/validators'
 
@@ -19,7 +19,7 @@ export default {
         title: "",
         action: "",
         done: false
-      } as Task,
+      } as CreateTask,
     }
   },
   validations: {
