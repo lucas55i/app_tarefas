@@ -22,7 +22,7 @@ export default {
 
 <template>
   <header>
-    <AddTask></AddTask>
+    <AddTask @taskAded="getAllTasks()"></AddTask>
   </header>
 
   <RouterView />
