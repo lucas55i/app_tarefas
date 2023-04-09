@@ -31,9 +31,8 @@ export const taskStore = defineStore({
       return new Promise<void>((resolve, reject) => {
         taskService
           .createTask(createTask)
-          .then((result) => {
-            // resolve();
-            console.log(result);
+          .then((res) => {
+            resolve(res.data);
           })
           .catch((err) => {
             reject(err)
