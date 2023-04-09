@@ -1,7 +1,7 @@
 <script  lang="ts">
 import type { Task } from '@/core/models/task';
 import { taskStore } from '@/store/tasks';
-import { required, email } from '@vuelidate/validators'
+import { required } from '@vuelidate/validators'
 
 export default {
   setup() {
@@ -32,6 +32,11 @@ export default {
       if (formTask.validate()) {
         this.userStore.createTask(this.task)
         this.$emit('taskAded')
+        this.task = {
+          title: "",
+          action: "",
+          done: false
+        }
       }
       else {
         alert('FORMULARIO NÃO VALIDADO')
@@ -43,7 +48,6 @@ export default {
 
 <template>
   <div class="form-component">
-    <!-- <AddFormTask></AddFormTask> -->
     <v-form ref="formTask" class="custom-input">
       <v-text-field v-model="task.title" label="Titúlo" required></v-text-field>
       <v-text-field v-model="task.action" label="Descrição" required></v-text-field>
