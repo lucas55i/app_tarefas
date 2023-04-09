@@ -32,7 +32,21 @@ export const taskStore = defineStore({
         taskService
           .createTask(createTask)
           .then((res) => {
-            resolve(res.data);
+            resolve(res.data)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+
+    async updateStatusTask(_id: string) {
+      return new Promise<void>((resolve, reject) => {
+        taskService
+          .updateStatusTask(_id)
+          .then((res) => {
+            resolve(res.data)
+            console.log(res)
           })
           .catch((err) => {
             reject(err)

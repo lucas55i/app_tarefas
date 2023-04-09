@@ -16,6 +16,10 @@ class TaskService {
   async createTask(creatTask: CreateTask) {
     return await this.httpClient.post('/v0/tarefas', creatTask)
   }
+
+  async updateStatusTask(_id: string) {
+    return await this.httpClient.put(`/v0/tarefas/${_id}`,)
+  }
 }
 
 const taskService = new TaskService()
