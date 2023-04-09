@@ -8,7 +8,7 @@ store
 </script>
 
 <template>
-  <TaskComponent v-for="task in store.tasks" :key="task.action">
+  <TaskComponent v-for="task in store.tasks" :key="task.action" :id="task._id" :task="task">
     <template #icon>
       <DocumentationIcon />
     </template>

@@ -1,9 +1,39 @@
 <script lang="ts">
-export default {}
+import type { Task } from '@/core/models/task';
+import { taskStore } from '@/store/tasks';
+
+export default {
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+  setup() {
+    const userStore = taskStore()
+    return {
+      userStore,
+    };
+
+  },
+  data(){
+    return{
+      editTask: {} as Task
+    }
+  },
+  methods: {
+
+    // TODO: Melhoria futura
+    check(){
+      this.editTask.done = true
+      this.userStore.updateStatusTask(this.id, this.editTask)
+    }
+  }
+}
 </script>
 <template>
   <div class="item">
-    <i>
+    <i @click="check">
       <slot name="icon"></slot>
     </i>
     <div class="details">

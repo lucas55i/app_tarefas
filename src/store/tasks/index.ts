@@ -1,4 +1,4 @@
-import type { CreateTask, Task } from '@/core/models/task'
+import type { CreateTask, Task, UpdateStatusTask } from '@/core/models/task'
 import { defineStore } from 'pinia'
 import { taskService } from '@/core/services/task-service'
 
@@ -40,10 +40,10 @@ export const taskStore = defineStore({
       })
     },
 
-    async updateStatusTask(_id: string) {
+    async updateStatusTask(_id: string, task: Task) {
       return new Promise<void>((resolve, reject) => {
         taskService
-          .updateStatusTask(_id)
+          .updateStatusTask(_id, task)
           .then((res) => {
             resolve(res.data)
             console.log(res)
