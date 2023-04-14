@@ -13,25 +13,20 @@ export default {
       type: Function,
       required: true
     },
-  },
-  setup() {
-    const userStore = taskStore()
-    return {
-      userStore
+    tasks: {
+      type: Array<Task>,
+      required: true
     }
   },
   data() {
-    return {
-      editTask: {} as Task
-    }
+    return {}
   },
   components: { DocumentationIcon },
-  methods: {}
 }
 </script>
 
 <template>
-  <div class="item" v-for="task in userStore.tasks" :key="task.action">
+  <div class="item" :tasks="tasks" v-for="task in tasks" :key="task.action">
     <i @click="mudaStatus()">
       <DocumentationIcon />
     </i>
