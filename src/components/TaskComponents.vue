@@ -1,19 +1,123 @@
-<script setup lang="ts">
-import TaskComponent from './tasks.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
+<script lang="ts">
+import type { Task } from '@/core/models/task'
 import { taskStore } from '../store/tasks/index'
+import DocumentationIcon from './icons/IconDocumentation.vue'
 
-const store = taskStore();
-store
+export default {
+  props: {
+    id: {
+      type: String,
+      required: true
+    },
+    mudaStatus: {
+      type: Function,
+      required: true
+    },
+  },
+  setup() {
+    const userStore = taskStore()
+    return {
+      userStore
+    }
+  },
+  data() {
+    return {
+      editTask: {} as Task
+    }
+  },
+  components: { DocumentationIcon },
+  methods: {}
+}
 </script>
 
 <template>
-  <TaskComponent v-for="task in store.tasks" :key="task.action" :id="task._id" :task="task">
-    <template #icon>
+  <div class="item" v-for="task in userStore.tasks" :key="task.action">
+    <i @click="mudaStatus()">
       <DocumentationIcon />
-    </template>
-    <template #heading>{{ task.title }}</template>
-    <template #action>{{ task.action }}</template>
-
-  </TaskComponent>
+    </i>
+    <div class="details">
+      <h3>
+        {{ task.title }}
+      </h3>
+      <p>
+        {{ task.action }}
+      </p>
+    </div>
+  </div>
 </template>
+<style scoped>
+.item {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.details {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+i {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  width: 32px;
+  height: 32px;
+
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: var(--color-heading);
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+@media (min-width: 1024px) {
+  .item {
+    margin-top: 0;
+    padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
+  }
+
+  i {
+    top: calc(50% - 25px);
+    left: -26px;
+    position: absolute;
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    border-radius: 8px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .item:before {
+    content: ' ';
+    border-left: 1px solid var(--color-border);
+    position: absolute;
+    left: 0;
+    bottom: calc(50% + 25px);
+    height: calc(50% - 25px);
+  }
+
+  .item:after {
+    content: ' ';
+    border-left: 1px solid var(--color-border);
+    position: absolute;
+    left: 0;
+    top: calc(50% + 25px);
+    height: calc(50% - 25px);
+  }
+
+  .item:first-of-type:before {
+    display: none;
+  }
+
+  .item:last-of-type:after {
+    display: none;
+  }
+}
+</style>
