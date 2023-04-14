@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TaskComponent from '../components/TaskComponents.vue'
+import Tasks from '../components/tasks.vue'
 </script>
 
 <template>
   <main>
-    <TaskComponent />
+    <Tasks />
   </main>
 </template>
