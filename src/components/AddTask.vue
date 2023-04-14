@@ -1,48 +1,46 @@
-<script  lang="ts">
-import type { CreateTask, Task } from '@/core/models/task';
-import { taskStore } from '@/store/tasks';
+<script lang="ts">
+import type { CreateTask, Task } from '@/core/models/task'
+import { taskStore } from '@/store/tasks'
 import { required } from '@vuelidate/validators'
 
 export default {
   setup() {
     const userStore = taskStore()
     return {
-      userStore,
-    };
-
+      userStore
+    }
   },
 
   data() {
     return {
       valid: true,
       task: {
-        title: "",
-        action: "",
+        title: '',
+        action: '',
         done: false
-      } as CreateTask,
+      } as CreateTask
     }
   },
   validations: {
     title: { required },
-    action: { required },
+    action: { required }
   },
   methods: {
     submitForm() {
-      const formTask = this.$refs.formTask as any;
+      const formTask = this.$refs.formTask as any
       if (formTask.validate()) {
         this.userStore.createTask(this.task)
         this.$emit('taskAded')
         this.task = {
-          title: "",
-          action: "",
+          title: '',
+          action: '',
           done: false
         }
-      }
-      else {
+      } else {
         alert('FORMULARIO NÃO VALIDADO')
       }
     }
-  },
+  }
 }
 </script>
 
