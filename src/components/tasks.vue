@@ -1,48 +1,35 @@
 <script lang="ts">
-import type { Task } from '@/core/models/task';
-import { taskStore } from '@/store/tasks';
+import type { Task } from '@/core/models/task'
+import { taskStore } from '@/store/tasks'
+import DocumentationIcon from './icons/IconDocumentation.vue'
+import TaskComponents from './TaskComponents.vue'
 
 export default {
-  props: {
-    id: {
-      type: String,
-      required: true,
-    },
-  },
   setup() {
     const userStore = taskStore()
     return {
-      userStore,
-    };
-
+      userStore
+    }
   },
-  data(){
-    return{
+  data() {
+    return {
       editTask: {} as Task
     }
   },
+  components: { DocumentationIcon, TaskComponents },
   methods: {
-
     // TODO: Melhoria futura
-    check(){
+    mudaStatus() {
       this.editTask.done = true
-      this.userStore.updateStatusTask(this.id, this.editTask)
+      console.log(this.editTask)
+      console.log('test')
+      // this.userStore.updateStatusTask(this.id, this.editTask)
     }
   }
 }
 </script>
 <template>
-  <div class="item">
-    <i @click="check">
-      <slot name="icon"></slot>
-    </i>
-    <div class="details">
-      <h3>
-        <slot name="heading"></slot>
-      </h3>
-      <slot name="action"></slot>
-    </div>
-  </div>
+  <TaskComponents :mudaStatus="mudaStatus" id="" />
 </template>
 
 <style scoped>
