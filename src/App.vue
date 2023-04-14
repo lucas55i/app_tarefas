@@ -2,21 +2,22 @@
 import { RouterView } from 'vue-router'
 import { taskStore } from './store/tasks/index'
 import AddTask from './components/AddTask.vue'
+import TaskComponent from './components/TaskComponents.vue'
 
 export default {
   setup() {
-    const userStore = taskStore();
+    const userStore = taskStore()
     async function getAllTasks() {
-      await userStore.getAll();
+      await userStore.getAll()
     }
     return {
-      getAllTasks,
-    };
+      getAllTasks
+    }
   },
   created() {
-    this.getAllTasks();
+    this.getAllTasks()
   },
-  components: { AddTask },
+  components: { AddTask, TaskComponent }
 }
 </script>
 
@@ -27,7 +28,8 @@ export default {
 
   <RouterView />
 
-  <p>Tarefas Concluidas</p>
+  <main>
+  </main>
 </template>
 
 <style scoped>
