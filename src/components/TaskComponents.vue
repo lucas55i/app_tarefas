@@ -4,22 +4,29 @@ import { taskStore } from '../store/tasks/index'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 
 export default {
+  setup() {
+    const userStore = taskStore()
+    return {
+      userStore
+    }
+  },
   props: {
-    id: {
-      type: String,
-      required: true
-    },
-    mudaStatus: {
-      type: Function,
-      required: true
-    },
     tasks: {
       type: Array<Task>,
       required: true
-    }
+    },
   },
   data() {
-    return {}
+    return {
+      editTask: {} as Task
+    }
+  },
+  methods: {
+    mudaStatus(id: string) {
+      this.editTask.done = true
+      console.log(id);
+      this.userStore.updateStatusTask(id, this.editTask)
+    }
   },
   components: { DocumentationIcon },
 }
@@ -27,7 +34,7 @@ export default {
 
 <template>
   <div class="item" :tasks="tasks" v-for="task in tasks" :key="task.action">
-    <i @click="mudaStatus()">
+    <i @click="mudaStatus(task._id)">
       <DocumentationIcon />
     </i>
     <div class="details">
@@ -55,9 +62,6 @@ i {
   display: flex;
   place-items: center;
   place-content: center;
-  width: 32px;
-  height: 32px;
-
   color: var(--color-text);
 }
 
@@ -75,7 +79,7 @@ p {
 @media (min-width: 1024px) {
   .item {
     margin-top: 0;
-    padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
+    padding: 0.3rem 3rem 1rem;
   }
 
   i {
