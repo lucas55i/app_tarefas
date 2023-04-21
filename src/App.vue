@@ -2,7 +2,6 @@
 import { RouterView } from 'vue-router'
 import { taskStore } from './store/tasks/index'
 import AddTask from './components/AddTask.vue'
-import TaskComponent from './components/TaskComponents.vue'
 
 export default {
   setup() {
@@ -11,13 +10,13 @@ export default {
       await userStore.getAll()
     }
     return {
-      getAllTasks
+      getAllTasks,
     }
   },
   created() {
     this.getAllTasks()
   },
-  components: { AddTask, TaskComponent }
+  components: { AddTask }
 }
 </script>
 
@@ -27,9 +26,6 @@ export default {
   </header>
 
   <RouterView />
-
-  <main>
-  </main>
 </template>
 
 <style scoped>
