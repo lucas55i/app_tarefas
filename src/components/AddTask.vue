@@ -2,15 +2,29 @@
 import type { CreateTask, Task } from '@/core/models/task'
 import { taskStore } from '@/store/tasks'
 import { required } from '@vuelidate/validators'
+import { useField, useForm } from 'vee-validate'
 
 export default {
   setup() {
     const userStore = taskStore()
+
+    const { handleSubmit, handleReset } = useForm({
+      validationSchema: {
+        action(value: string) {
+          if (value?.length >= 2) return true
+
+          return 'action needs to be at least 2 characters.'
+        },
+      },
+    })
+    const action = useField('action')
+
     return {
-      userStore
+      userStore,
+      action,
     }
   },
-  emits:['taskAded'],
+  emits: ['taskAded'],
 
   data() {
     return {
@@ -19,7 +33,8 @@ export default {
         title: '',
         action: '',
         done: false
-      } as CreateTask
+      } as CreateTask,
+      error: ''
     }
   },
   validations: {
@@ -28,8 +43,7 @@ export default {
   },
   methods: {
     submitForm() {
-      const formTask = this.$refs.formTask as any
-      if (formTask.validate()) {
+      if (this.task.title && this.task.action) {
         this.userStore.createTask(this.task)
         this.$emit('taskAded')
         this.task = {
@@ -38,7 +52,7 @@ export default {
           done: false
         }
       } else {
-        alert('FORMULARIO NÃO VALIDADO')
+        alert(`Os campos ${this.task.title} devem ser` )
       }
     }
   }
@@ -47,11 +61,11 @@ export default {
 
 <template>
   <div class="form-component">
-    <v-form ref="formTask" class="custom-input">
-      <v-text-field v-model="task.title" label="Titúlo"></v-text-field>
-      <v-text-field v-model="task.action" label="Descrição"></v-text-field>
+    <form class="custom-input">
+      <v-text-field v-model="task.title"  label="Titúlo"></v-text-field>
+      <v-text-field v-model="task.action" :counter="164" label="Descrição"></v-text-field>
       <v-btn color="primary" class="custom-button" @click="submitForm">Enviar</v-btn>
-    </v-form>
+    </form>
   </div>
 </template>
 
