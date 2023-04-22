@@ -17,8 +17,8 @@ class TaskService {
     return await this.httpClient.post('/v0/tarefas', creatTask)
   }
 
-  async updateStatusTask(_id: string, task: Task) {
-    return await this.httpClient.put(`/v0/tarefas/${_id}`, task)
+  async deleteTask(_id: string) {
+    return await this.httpClient.delete(`/v0/tarefas/${_id}`)
   }
 }
 

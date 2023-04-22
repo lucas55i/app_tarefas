@@ -22,9 +22,9 @@ export default {
     }
   },
   methods: {
-    mudaStatus(id: string) {
-      this.editTask.done = true
-      this.userStore.updateStatusTask(id, this.editTask)
+    deleteTask(id: string) {
+      this.userStore.deleteTask(id)
+      this.$emit('taskUpdated')
     }
   },
   components: { DocumentationIcon },
@@ -33,7 +33,7 @@ export default {
 
 <template>
   <div class="item" :tasks="tasks" v-for="task in tasks" :key="task.action">
-    <i @click="mudaStatus(task._id)">
+    <i @click="deleteTask(task._id)">
       <DocumentationIcon />
     </i>
     <div class="details">

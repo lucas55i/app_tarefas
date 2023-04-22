@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { taskService } from '@/core/services/task-service'
 
 interface TaskState {
-  tasks: Task[],
+  tasks: Task[]
 }
 
 export const taskStore = defineStore({
@@ -17,7 +17,6 @@ export const taskStore = defineStore({
         taskService
           .getAll()
           .then((result) => {
-            // resolve();
             this.tasks = result
           })
           .catch((err) => {
@@ -39,13 +38,12 @@ export const taskStore = defineStore({
       })
     },
 
-    async updateStatusTask(_id: string, task: Task) {
+    async deleteTask(_id: string) {
       return new Promise<void>((resolve, reject) => {
         taskService
-          .updateStatusTask(_id, task)
+          .deleteTask(_id)
           .then((res) => {
             resolve(res.data)
-            console.log(res)
           })
           .catch((err) => {
             reject(err)
