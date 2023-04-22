@@ -10,6 +10,7 @@ export default {
       userStore
     }
   },
+  emits:['taskAded'],
 
   data() {
     return {
