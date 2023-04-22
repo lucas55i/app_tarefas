@@ -10,6 +10,7 @@ export default {
       userStore
     }
   },
+  emits: ['taskUpdated'],
   props: {
     tasks: {
       type: Array<Task>,
