@@ -47,8 +47,8 @@ export default {
 <template>
   <div class="form-component">
     <v-form ref="formTask" class="custom-input">
-      <v-text-field v-model="task.title" label="Titúlo" required></v-text-field>
-      <v-text-field v-model="task.action" label="Descrição" required></v-text-field>
+      <v-text-field v-model="task.title" label="Titúlo" ></v-text-field>
+      <v-text-field v-model="task.action" label="Descrição" ></v-text-field>
       <v-btn color="primary" class="custom-button" @click="submitForm">Enviar</v-btn>
     </v-form>
   </div>
