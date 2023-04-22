@@ -24,7 +24,6 @@ export default {
   methods: {
     mudaStatus(id: string) {
       this.editTask.done = true
-      console.log(id);
       this.userStore.updateStatusTask(id, this.editTask)
     }
   },

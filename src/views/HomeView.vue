@@ -1,6 +1,7 @@
 <script lang="ts">
 import { taskStore } from '@/store/tasks';
 import TaskComponent from '../components/TaskComponents.vue'
+import type { Task } from '@/core/models/task';
 
 export default {
   components: { TaskComponent },
@@ -10,18 +11,15 @@ export default {
       userStore
     }
   },
-  methods: {
-    getTaskCompleted() {
-      return this.userStore.tasks.filter((ta) => ta.done === false).map((p) => p.done)
+  data() {
+    return {
     }
-  }
+  },
+  methods: {},
 }
 </script>
 
 <template>
-  <span>
-    <TaskComponent :tasks="userStore.tasks" />
-  </span>
   <span>
     <TaskComponent :tasks="userStore.tasks" />
   </span>

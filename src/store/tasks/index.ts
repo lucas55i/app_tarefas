@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { taskService } from '@/core/services/task-service'
 
 interface TaskState {
-  tasks: Task[]
+  tasks: Task[],
 }
 
 export const taskStore = defineStore({
@@ -11,7 +11,6 @@ export const taskStore = defineStore({
   state: (): TaskState => ({
     tasks: []
   }),
-
   actions: {
     async getAll() {
       return new Promise<void>((resolve, reject) => {
